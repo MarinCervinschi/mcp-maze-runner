@@ -44,11 +44,33 @@ graph TD
 - 👁️ **Visibility**: Limited field of view creates exploration challenge
 
 ### MCP Tools Exposed
-- `move(direction)` - Move character in specified direction
-- `look()` - Get description of current position and surroundings
-- `get_game_state()` - Retrieve complete game state
-- `pickup_item()` - Collect items at current position
-- `restart_game()` - Reset game to initial state
+- `move(direction)` - Move the player in a cardinal direction (north, south, east, west)
+- `look_around(visibility_range)` - See nearby cells, walls, keys, and available moves
+- `get_game_state()` - Get complete game state (position, keys, moves, status)
+- `get_maze_display(fog_of_war)` - Get ASCII visualization of the maze
+- `reset_game()` - Reset the game to start fresh with a new maze
+
+## Installation & Usage
+
+### Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/MarinCervinschi/mcp-maze-runner.git
+cd mcp-maze-runner
+
+# Install dependencies with uv
+uv sync
+
+# Run the MCP server
+uv run mcp-maze-runner
+```
+
+### Running Tests
+
+```bash
+uv run pytest tests/ -v
+```
 
 ## Technology Stack
 
