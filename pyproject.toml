@@ -5,15 +5,9 @@ description = "An interactive maze game controlled through natural language chat
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "google-adk>=1.19.0",
     "mcp>=1.21.0",
 ]
-
-[project.scripts]
-mcp-maze-runner = "src.server:main"
-
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
 
 [dependency-groups]
 dev = [
