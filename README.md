@@ -33,13 +33,13 @@ graph TD
 - **MCP Integration**: Full implementation of Model Context Protocol
 
 ### Game Mechanics
-- 🚶 **Movement**: Navigate in four directions (North, South, East, West)
+- 🚶 **Movement**: Navigate in four directions (Up, Down, Left, Right)
 - 🧱 **Obstacles**: Walls block your path, requiring strategic thinking
 - 🔑 **Keys**: Collect keys to unlock special doors
 - 🚪 **Exit**: Find and reach the maze exit to win
 
 ### MCP Tools Exposed
-- `move(direction)` - Move the player in a cardinal direction (north, south, east, west)
+- `move(direction)` - Move the player in a cardinal direction (up, down, left, right)
 - `look_around(visibility_range)` - See nearby cells, walls, keys, and available moves
 - `get_game_state()` - Get complete game state (position, keys, moves, status)
 - `get_maze_display(fog_of_war)` - Get ASCII visualization of the maze
@@ -82,8 +82,9 @@ you can obtain an API key from the [Google AI Studio](https://aistudio.google.co
 ```bash
 uv run adk web
 ```
-- Open your browser and navigate to [http://localhost:8000](http://localhost:8000) to start playing!
+- Open your browser and navigate to [http://localhost:8000](http://localhost:8000).
 - This is the adk web chat interface where you can interact with the maze runner agent.
+- Select the `root_agent` on the left panel and start a new chat session.
 
 ### 5. Alternatively, you can run the game and play in the terminal:
 

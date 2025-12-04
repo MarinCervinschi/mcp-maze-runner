@@ -93,7 +93,7 @@ class Game:
         Attempt to move the player in a direction.
 
         Args:
-            direction: The direction to move ('north', 'south', 'east', 'west').
+            direction: The direction to move ('up', 'down', 'left', 'right').
 
         Returns:
             MoveResult with success status and details.

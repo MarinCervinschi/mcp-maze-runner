@@ -1,6 +1,5 @@
 """Unit tests for the MCP server tools."""
 
-import pytest
 from src.server import (
     get_game,
     reset_game_instance,
@@ -9,7 +8,6 @@ from src.server import (
     get_game_state,
     get_maze_display,
     reset_game,
-    _game,
 )
 from src.game import GameStatus
 

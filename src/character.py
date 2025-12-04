@@ -34,7 +34,7 @@ class Character:
         calculates where the character would be if they moved.
 
         Args:
-            direction: The direction to move ('north', 'south', 'east', 'west').
+            direction: The direction to move ('up', 'down', 'left', 'right').
 
         Returns:
             The new position after the move.

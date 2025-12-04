@@ -30,7 +30,7 @@ def move(direction: str) -> dict:
     Move the player in a cardinal direction.
 
     Args:
-        direction: The direction to move - 'north', 'south', 'east', or 'west'
+        direction: The direction to move - 'up', 'down', 'left', or 'right'
 
     Returns:
         Result with success status, message, and any events (key collected, reached exit)
