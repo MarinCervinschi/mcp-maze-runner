@@ -47,9 +47,7 @@ graph TD
 
 ## Installation & Usage
 
-### Quick Start
-
-1. Install uv if you haven't already:
+### 1. Install uv if you haven't already:
 
 ```bash
 # macOS/Linux
@@ -59,7 +57,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 pip install uv
 ```
 
-2. Clone and Setup:
+### 2. Clone and Setup:
 
 ```bash
 # clone the repo
@@ -70,7 +68,7 @@ cd mcp-maze-runner
 uv sync
 ```
 
-3. Configure API Key
+### 3. Configure API Key
 - Create a `.env` file in the `root_agent` directory with your Google API key:
 
 ```text
@@ -79,15 +77,21 @@ GOOGLE_API_KEY=your_google_api_key_here
 
 you can obtain an API key from the [Google AI Studio](https://aistudio.google.com/api-keys).
 
-4. Run the Application:
+### 4. Run the Application:
 
 ```bash
 uv run adk web
 ```
-
-5. Open your browser and navigate to `http://localhost:8000` to start playing!
-
+- Open your browser and navigate to [http://localhost:8000](http://localhost:8000) to start playing!
 - This is the adk web chat interface where you can interact with the maze runner agent.
+
+### 5. Alternatively, you can run the game and play in the terminal:
+
+```bash
+uv run python main.py
+```
+- This will start the game in your terminal, allowing you to interact with the maze directly.
+- In this mode you don't use the AI agent or the MCP tools, but it's a fun way to experience the maze!
 
 ### Running Tests
 
