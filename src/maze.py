@@ -166,10 +166,15 @@ class Maze:
         """Add some internal walls to make the maze interesting."""
         # Add some internal walls based on maze size
         internal_walls = [
-            (2, 1), (2, 2), (2, 3),
-            (4, 3), (4, 4), (4, 5),
-            (1, 5), (2, 5),
-            (5, 1), (5, 2),
+            (2, 1),
+            (2, 2),
+            (2, 3),
+            (4, 3),
+            (4, 4),
+            (4, 5),
+            (1, 5),
+            (2, 5),
+            (5, 1),
         ]
         for x, y in internal_walls:
             if 0 < x < self.width - 1 and 0 < y < self.height - 1:
@@ -192,7 +197,10 @@ class Maze:
             self.key_positions.add(key_pos)
 
         key_pos2 = Position(self.width - 3, self.height - 3)
-        if self.is_valid_position(key_pos2) and self.get_cell(key_pos2) == CellType.EMPTY:
+        if (
+            self.is_valid_position(key_pos2)
+            and self.get_cell(key_pos2) == CellType.EMPTY
+        ):
             self.grid[key_pos2.y][key_pos2.x] = CellType.KEY
             self.key_positions.add(key_pos2)
 

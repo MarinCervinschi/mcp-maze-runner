@@ -10,17 +10,14 @@ An interactive maze game controlled through natural language chat, built to demo
 
 ```mermaid
 graph TD
-    A[User Chat Input] --> B[Streamlit UI]
-    B --> C[Google ADK Agent]
-    C --> D[MCP Server]
-    D --> E[Game Logic]
-    E -.-> D
+    A[User Chat Input] --> B[Google ADK Agent]
+    B --> C[MCP Server]
+    C --> D[Game Logic]
     D -.-> C
     C -.-> B
     B -.-> A
     
     subgraph "Game State Loop"
-        E --> D
         D --> C
         C --> B
         B --> A
@@ -32,7 +29,6 @@ graph TD
 ### Core Features
 - **Natural Language Control**: Command your character using plain English
 - **Interactive Maze**: Navigate through a grid-based maze with obstacles
-- **Visual Interface**: Real-time maze visualization in the browser
 - **AI-Powered Agent**: Intelligent interpretation of player intentions
 - **MCP Integration**: Full implementation of Model Context Protocol
 
@@ -41,7 +37,6 @@ graph TD
 - 🧱 **Obstacles**: Walls block your path, requiring strategic thinking
 - 🔑 **Keys**: Collect keys to unlock special doors
 - 🚪 **Exit**: Find and reach the maze exit to win
-- 👁️ **Visibility**: Limited field of view creates exploration challenge
 
 ### MCP Tools Exposed
 - `move(direction)` - Move the player in a cardinal direction (north, south, east, west)
@@ -54,17 +49,45 @@ graph TD
 
 ### Quick Start
 
+1. Install uv if you haven't already:
+
 ```bash
-# Clone the repository
+# macOS/Linux
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# pip
+pip install uv
+```
+
+2. Clone and Setup:
+
+```bash
+# clone the repo
 git clone https://github.com/MarinCervinschi/mcp-maze-runner.git
 cd mcp-maze-runner
 
-# Install dependencies with uv
+# install dependencies
 uv sync
-
-# Run the MCP server
-uv run mcp-maze-runner
 ```
+
+3. Configure API Key
+- Create a `.env` file in the `root_agent` directory with your Google API key:
+
+```text
+GOOGLE_API_KEY=your_google_api_key_here
+```
+
+you can obtain an API key from the [Google AI Studio](https://aistudio.google.com/api-keys).
+
+4. Run the Application:
+
+```bash
+uv run adk web
+```
+
+5. Open your browser and navigate to `http://localhost:8000` to start playing!
+
+- This is the adk web chat interface where you can interact with the maze runner agent.
 
 ### Running Tests
 
@@ -78,26 +101,6 @@ uv run pytest tests/ -v
 - **Python 3.10+**: Core programming language
 - **MCP Library** (`mcp`): Model Context Protocol implementation
 - **Google ADK**: AI agent framework with Gemini integration
-
-### Frontend
-- **Streamlit**: Web-based UI framework
-- **HTML/CSS**: Custom maze visualization
-
-### Deployment
-- **Docker**: Containerization for consistent deployment
-
-## Requirements
-
-See [docs/requirements.md](docs/requirements.md) for detailed functional and non-functional requirements.
-
-## Contributing
-
-Contributions are welcome! This is an educational project, so feel free to:
-- Add new maze layouts
-- Implement additional game mechanics
-- Improve AI agent prompts
-- Enhance UI/UX
-- Fix bugs or optimize code
 
 ## License
 
