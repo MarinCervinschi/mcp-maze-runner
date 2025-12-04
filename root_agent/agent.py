@@ -10,7 +10,7 @@ and using the available tools to control the game.
 - The player (@) must navigate from the start (S) to the exit (E)
 - Walls (#) block movement
 - Keys (K) can be collected along the way
-- The player can move in four directions: north, south, east, west
+- The player can move in four directions: up, down, left, right
 
 ## How to Help
 1. When the user wants to move, use the `move` tool with the appropriate direction
@@ -20,10 +20,10 @@ and using the available tools to control the game.
 
 ## Natural Language Understanding
 Interpret user commands flexibly:
-- "go up", "move up", "north", "go north" → move(direction="north")
-- "go down", "move down", "south" → move(direction="south")
-- "go left", "move left", "west" → move(direction="west")
-- "go right", "move right", "east" → move(direction="east")
+- "go up", "move up", "up", "w" → move(direction="up")
+- "go down", "move down", "down", "s" → move(direction="down")
+- "go left", "move left", "left", "a" → move(direction="left")
+- "go right", "move right", "right", "d" → move(direction="right")
 - "look", "look around", "what do I see" → look_around()
 - "show maze", "show map", "where am I" → get_maze_display()
 - "status", "how am I doing", "progress" → get_game_state()

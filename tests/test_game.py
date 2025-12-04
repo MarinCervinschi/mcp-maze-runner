@@ -54,11 +54,11 @@ class TestGameMovement:
             "#####",
         ]
         game = Game.from_layout(layout)
-        result = game.move("east")
+        result = game.move("right")
 
         assert result.success is True
         assert game.character.position == Position(2, 1)
-        assert "Moved east" in result.message
+        assert "Moved right" in result.message
 
     def test_move_into_wall(self) -> None:
         """Test that moving into a wall fails."""
@@ -70,7 +70,7 @@ class TestGameMovement:
             "#####",
         ]
         game = Game.from_layout(layout)
-        result = game.move("north")
+        result = game.move("up")
 
         assert result.success is False
         assert "wall" in result.message.lower()
@@ -79,7 +79,7 @@ class TestGameMovement:
     def test_move_invalid_direction(self) -> None:
         """Test that invalid direction fails."""
         game = Game.create_new()
-        result = game.move("up")
+        result = game.move("north")
 
         assert result.success is False
         assert "Invalid direction" in result.message
@@ -94,10 +94,10 @@ class TestGameMovement:
             "#####",
         ]
         game = Game.from_layout(layout)
-        game.move("east")
-        game.move("east")  # Should win
+        game.move("right")
+        game.move("right")  # Should win
 
-        result = game.move("south")
+        result = game.move("down")
 
         assert result.success is False
         assert "over" in result.message.lower()
@@ -112,7 +112,7 @@ class TestGameMovement:
             "#####",
         ]
         game = Game.from_layout(layout)
-        result = game.move("east")
+        result = game.move("right")
 
         assert result.success is True
         assert result.key_collected is True
@@ -129,8 +129,8 @@ class TestGameMovement:
             "#####",
         ]
         game = Game.from_layout(layout)
-        game.move("east")
-        result = game.move("east")
+        game.move("right")
+        result = game.move("right")
 
         assert result.success is True
         assert result.reached_exit is True
@@ -194,10 +194,10 @@ class TestGameAvailableMoves:
         game = Game.from_layout(layout)
         moves = game.get_available_moves()
 
-        assert "east" in moves
-        assert "south" in moves
-        assert "north" not in moves
-        assert "west" not in moves
+        assert "right" in moves
+        assert "down" in moves
+        assert "up" not in moves
+        assert "left" not in moves
 
     def test_get_available_moves_center(self) -> None:
         """Test available moves from the center."""
@@ -211,10 +211,10 @@ class TestGameAvailableMoves:
         game = Game.from_layout(layout)
         moves = game.get_available_moves()
 
-        assert "north" in moves
-        assert "south" in moves
-        assert "east" in moves
-        assert "west" in moves
+        assert "up" in moves
+        assert "down" in moves
+        assert "right" in moves
+        assert "left" in moves
 
 
 class TestGameState:
@@ -240,7 +240,7 @@ class TestGameState:
             "#####",
         ]
         game = Game.from_layout(layout)
-        game.move("east")  # Collect key
+        game.move("right")  # Collect key
 
         state = game.get_state()
 
@@ -301,9 +301,9 @@ class TestGameReset:
             "#####",
         ]
         game = Game.from_layout(layout)
-        game.move("east")  # Collect key
-        game.move("east")
-        game.move("south")
+        game.move("right")  # Collect key
+        game.move("right")
+        game.move("down")
 
         game.reset()
 

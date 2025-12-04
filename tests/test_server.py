@@ -39,7 +39,7 @@ class TestServerGameManagement:
     def test_reset_game_instance_creates_new(self) -> None:
         """Test that reset_game_instance creates a new game."""
         game1 = get_game()
-        game1.move("east")  # Make some changes
+        game1.move("right")  # Make some changes
         game2 = reset_game_instance()
         assert game2.character.moves_made == 0
 
@@ -53,26 +53,26 @@ class TestMoveTool:
 
     def test_move_valid_direction(self) -> None:
         """Test moving in a valid direction."""
-        result = move("south")
+        result = move("down")
         assert result["success"] is True
-        assert "Moved south" in result["message"]
+        assert "Moved down" in result["message"]
         assert result["game_status"] == "playing"
 
     def test_move_into_wall(self) -> None:
         """Test moving into a wall."""
-        result = move("north")
+        result = move("up")
         assert result["success"] is False
         assert "wall" in result["message"].lower()
 
     def test_move_invalid_direction(self) -> None:
         """Test moving in an invalid direction."""
-        result = move("up")
+        result = move("north")
         assert result["success"] is False
         assert "Invalid direction" in result["message"]
 
     def test_move_returns_position(self) -> None:
         """Test that successful move returns new position."""
-        result = move("south")
+        result = move("down")
         assert result["success"] is True
         assert "new_position" in result
         assert "x" in result["new_position"]
@@ -124,7 +124,7 @@ class TestGetGameStateTool:
 
     def test_get_game_state_reflects_moves(self) -> None:
         """Test that state reflects moves made."""
-        move("south")
+        move("down")
         result = get_game_state()
         assert result["player"]["moves_made"] == 1
 
@@ -164,8 +164,8 @@ class TestResetGameTool:
 
     def test_reset_game_clears_progress(self) -> None:
         """Test that reset_game clears game progress."""
-        move("south")
-        move("south")
+        move("down")
+        move("down")
         reset_game()
         state = get_game_state()
         assert state["player"]["moves_made"] == 0

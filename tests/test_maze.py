@@ -50,17 +50,17 @@ class TestDirections:
 
     def test_all_directions_exist(self) -> None:
         """Test that all four cardinal directions are defined."""
-        assert "north" in DIRECTIONS
-        assert "south" in DIRECTIONS
-        assert "east" in DIRECTIONS
-        assert "west" in DIRECTIONS
+        assert "up" in DIRECTIONS
+        assert "down" in DIRECTIONS
+        assert "right" in DIRECTIONS
+        assert "left" in DIRECTIONS
 
     def test_direction_offsets(self) -> None:
         """Test that direction offsets are correct."""
-        assert DIRECTIONS["north"] == Position(0, -1)
-        assert DIRECTIONS["south"] == Position(0, 1)
-        assert DIRECTIONS["east"] == Position(1, 0)
-        assert DIRECTIONS["west"] == Position(-1, 0)
+        assert DIRECTIONS["up"] == Position(0, -1)
+        assert DIRECTIONS["down"] == Position(0, 1)
+        assert DIRECTIONS["right"] == Position(1, 0)
+        assert DIRECTIONS["left"] == Position(-1, 0)
 
 
 class TestMaze:

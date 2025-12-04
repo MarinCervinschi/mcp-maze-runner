@@ -24,33 +24,33 @@ class TestCharacter:
         assert character.position == Position(5, 5)
         assert Position(5, 5) in character.visited_positions
 
-    def test_move_north(self) -> None:
-        """Test calculating position after moving north."""
+    def test_move_up(self) -> None:
+        """Test calculating position after moving up."""
         character = Character(position=Position(5, 5))
-        new_pos = character.move("north")
+        new_pos = character.move("up")
 
         assert new_pos == Position(5, 4)
         # Position should not change (just calculation)
         assert character.position == Position(5, 5)
 
-    def test_move_south(self) -> None:
-        """Test calculating position after moving south."""
+    def test_move_down(self) -> None:
+        """Test calculating position after moving down."""
         character = Character(position=Position(5, 5))
-        new_pos = character.move("south")
+        new_pos = character.move("down")
 
         assert new_pos == Position(5, 6)
 
-    def test_move_east(self) -> None:
-        """Test calculating position after moving east."""
+    def test_move_right(self) -> None:
+        """Test calculating position after moving right."""
         character = Character(position=Position(5, 5))
-        new_pos = character.move("east")
+        new_pos = character.move("right")
 
         assert new_pos == Position(6, 5)
 
-    def test_move_west(self) -> None:
-        """Test calculating position after moving west."""
+    def test_move_left(self) -> None:
+        """Test calculating position after moving left."""
         character = Character(position=Position(5, 5))
-        new_pos = character.move("west")
+        new_pos = character.move("left")
 
         assert new_pos == Position(4, 5)
 
@@ -58,19 +58,19 @@ class TestCharacter:
         """Test that move direction is case insensitive."""
         character = Character(position=Position(5, 5))
 
-        assert character.move("NORTH") == Position(5, 4)
-        assert character.move("North") == Position(5, 4)
-        assert character.move("nOrTh") == Position(5, 4)
+        assert character.move("UP") == Position(5, 4)
+        assert character.move("Up") == Position(5, 4)
+        assert character.move("uP") == Position(5, 4)
 
     def test_move_invalid_direction(self) -> None:
         """Test that invalid direction raises error."""
         character = Character()
 
         with pytest.raises(ValueError, match="Invalid direction"):
-            character.move("up")
+            character.move("north")
 
         with pytest.raises(ValueError, match="Invalid direction"):
-            character.move("left")
+            character.move("diagonal")
 
     def test_set_position(self) -> None:
         """Test setting character position."""

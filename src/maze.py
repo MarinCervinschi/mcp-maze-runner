@@ -43,10 +43,10 @@ class Position:
 
 # Direction offsets for movement
 DIRECTIONS: dict[str, Position] = {
-    "north": Position(0, -1),
-    "south": Position(0, 1),
-    "east": Position(1, 0),
-    "west": Position(-1, 0),
+    "up": Position(0, -1),
+    "down": Position(0, 1),
+    "right": Position(1, 0),
+    "left": Position(-1, 0),
 }
 
 
