@@ -1,5 +1,6 @@
 from google.adk.agents.llm_agent import Agent
 from google.adk.tools.mcp_tool import MCPToolset, SseConnectionParams
+from google.genai import types
 
 AGENT_INSTRUCTION = """You are a helpful game assistant for the MCP Maze Runner game. 
 Your job is to help the player navigate through a maze by interpreting their commands 
@@ -41,6 +42,12 @@ Interpret user commands flexibly:
 - If the game is won, congratulate and offer to restart
 """
 
+generate_content_config = types.GenerateContentConfig(
+    http_options=types.HttpOptions(
+        retry_options=types.HttpRetryOptions(initial_delay=1, attempts=2),
+    ),
+)
+
 
 def get_mcp_tools_sse(url: str = "http://localhost:8080/sse") -> MCPToolset:
     """Create the MCP toolset that connects to the maze server via SSE."""
@@ -50,6 +57,7 @@ def get_mcp_tools_sse(url: str = "http://localhost:8080/sse") -> MCPToolset:
 root_agent = Agent(
     model="gemini-2.0-flash",
     name="maze_runner_agent",
+    generate_content_config=generate_content_config,
     description="An AI agent that helps players navigate through a maze game using natural language commands.",
     instruction=AGENT_INSTRUCTION,
     tools=[get_mcp_tools_sse()],

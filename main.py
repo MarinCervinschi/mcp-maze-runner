@@ -24,6 +24,8 @@ def main() -> None:
 
     try:
         subprocess.run(["uv", "run", "adk", "web"])
+    except KeyboardInterrupt:
+        print("\n🛑 Shutting down ADK web interface...")
     finally:
         print("\n🛑 Shutting down MCP server...")
         server_process.terminate()
