@@ -1,6 +1,5 @@
 from google.adk.agents.llm_agent import Agent
-from google.adk.tools.mcp_tool import MCPToolset, StdioConnectionParams
-from mcp.client.stdio import StdioServerParameters
+from google.adk.tools.mcp_tool import MCPToolset, SseConnectionParams
 
 AGENT_INSTRUCTION = """You are a helpful game assistant for the MCP Maze Runner game. 
 Your job is to help the player navigate through a maze by interpreting their commands 
@@ -43,16 +42,9 @@ Interpret user commands flexibly:
 """
 
 
-def get_mcp_tools() -> MCPToolset:
-    """Create the MCP toolset that connects to the maze server."""
-    return MCPToolset(
-        connection_params=StdioConnectionParams(
-            server_params=StdioServerParameters(
-                command="uv",
-                args=["run", "python", "-m", "src.server"],
-            )
-        )
-    )
+def get_mcp_tools_sse(url: str = "http://localhost:8080/sse") -> MCPToolset:
+    """Create the MCP toolset that connects to the maze server via SSE."""
+    return MCPToolset(connection_params=SseConnectionParams(url=url))
 
 
 root_agent = Agent(
@@ -60,5 +52,5 @@ root_agent = Agent(
     name="maze_runner_agent",
     description="An AI agent that helps players navigate through a maze game using natural language commands.",
     instruction=AGENT_INSTRUCTION,
-    tools=[get_mcp_tools()],
+    tools=[get_mcp_tools_sse()],
 )

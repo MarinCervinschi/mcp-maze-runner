@@ -3,7 +3,7 @@ from mcp.server.fastmcp import FastMCP
 from src.game import Game
 
 # Create the FastMCP server
-mcp = FastMCP("mcp-maze-runner")
+mcp = FastMCP("mcp-maze-runner", port=8080)
 
 # Global game instance to maintain state between tool calls
 _game: Game | None = None
@@ -115,7 +115,7 @@ def reset_game() -> str:
 
 def main() -> None:
     """Entry point for the MCP server."""
-    mcp.run()
+    mcp.run(transport="sse")
 
 
 if __name__ == "__main__":
