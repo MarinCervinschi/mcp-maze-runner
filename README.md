@@ -16,7 +16,7 @@ graph TD
     D -.-> C
     C -.-> B
     B -.-> A
-    
+
     subgraph "Game State Loop"
         D --> C
         C --> B
@@ -27,18 +27,21 @@ graph TD
 ## Features
 
 ### Core Features
+
 - **Natural Language Control**: Command your character using plain English
 - **Interactive Maze**: Navigate through a grid-based maze with obstacles
 - **AI-Powered Agent**: Intelligent interpretation of player intentions
 - **MCP Integration**: Full implementation of Model Context Protocol
 
 ### Game Mechanics
+
 - 🚶 **Movement**: Navigate in four directions (Up, Down, Left, Right)
 - 🧱 **Obstacles**: Walls block your path, requiring strategic thinking
 - 🔑 **Keys**: Collect keys to unlock special doors
 - 🚪 **Exit**: Find and reach the maze exit to win
 
 ### MCP Tools Exposed
+
 - `move(direction)` - Move the player in a cardinal direction (up, down, left, right)
 - `look_around(visibility_range)` - See nearby cells, walls, keys, and available moves
 - `get_game_state()` - Get complete game state (position, keys, moves, status)
@@ -69,6 +72,7 @@ uv sync
 ```
 
 ### 3. Configure API Key
+
 - Create a `.env` file in the `root_agent` directory with your Google API key:
 
 ```text
@@ -80,17 +84,36 @@ you can obtain an API key from the [Google AI Studio](https://aistudio.google.co
 ### 4. Run the Application:
 
 ```bash
-uv run adk web
+uv run main.py
 ```
+
+- This is the starting point that launches the MCP server and the adk web interface.
 - Open your browser and navigate to [http://localhost:8000](http://localhost:8000).
-- This is the adk web chat interface where you can interact with the maze runner agent.
 - Select the `root_agent` on the left panel and start a new chat session.
 
-### 5. Alternatively, you can run the game and play in the terminal:
+### 5. Alteratively, you can run the MCP server and AI agent separately:
+
+In one terminal, run the MCP server:
 
 ```bash
-uv run python main.py
+uv run python -m src.server
 ```
+
+- This starts the MCP server as a persistent HTTP service using Server-Sent Events (SSE).
+
+in another terminal, run the agent:
+
+```bash
+uv run adk web
+```
+- This connects the AI agent to the MCP server via SSE.
+
+### 6. You can also run the game and play in the terminal:
+
+```bash
+uv run python run_game.py
+```
+
 - This will start the game in your terminal, allowing you to interact with the maze directly.
 - In this mode you don't use the AI agent or the MCP tools, but it's a fun way to experience the maze!
 
@@ -103,7 +126,8 @@ uv run pytest tests/ -v
 ## Technology Stack
 
 ### Backend
-- **Python 3.10+**: Core programming language
+
+- **Python 3.12+**: Core programming language
 - **MCP Library** (`mcp`): Model Context Protocol implementation
 - **Google ADK**: AI agent framework with Gemini integration
 
