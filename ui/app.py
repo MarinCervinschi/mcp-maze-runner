@@ -1,9 +1,5 @@
 import streamlit as st
-import sys
 import threading
-from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from ui.runner import MazeRunner
 from src.server import mcp, get_game
