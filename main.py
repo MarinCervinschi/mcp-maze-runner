@@ -1,35 +1,10 @@
-import subprocess
-import time
-import sys
+from ui.app import MazeRunnerUI
 
 
 def main() -> None:
-    """Entry point for the APP - runs MCP server and ADK web in parallel."""
-
-    print("🎮 Starting MCP Maze Runner server...")
-    server_process = subprocess.Popen(
-        ["uv", "run", "python", "-m", "src.server"],
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-    )
-
-    time.sleep(2)
-
-    if server_process.poll() is not None:
-        print("❌ Failed to start MCP server")
-        sys.exit(1)
-
-    print("✅ MCP server running on http://localhost:8080")
-    print("🌐 Starting ADK web interface...")
-
-    try:
-        subprocess.run(["uv", "run", "adk", "web"])
-    except KeyboardInterrupt:
-        print("\n🛑 Shutting down ADK web interface...")
-    finally:
-        print("\n🛑 Shutting down MCP server...")
-        server_process.terminate()
-        server_process.wait()
+    """Launch the MCP Maze Runner."""
+    app = MazeRunnerUI()
+    app.run()
 
 
 if __name__ == "__main__":
