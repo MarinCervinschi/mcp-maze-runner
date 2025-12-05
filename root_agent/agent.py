@@ -2,6 +2,10 @@ from google.adk.agents.llm_agent import Agent
 from google.adk.tools.mcp_tool import MCPToolset, SseConnectionParams
 from google.genai import types
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 AGENT_INSTRUCTION = """You are a helpful game assistant for the MCP Maze Runner game. 
 Your job is to help the player navigate through a maze by interpreting their commands 
 and using the available tools to control the game.
