@@ -4,7 +4,34 @@ An interactive maze game controlled through natural language chat, built to demo
 
 ## Overview
 
-**MCP Maze Runner** is an educational project that showcases how to build an AI-powered game using the Model Context Protocol. Players navigate a maze by chatting with an AI agent, which uses MCP tools to control the game. The agent interprets natural language commands like "move forward" or "look around" and translates them into game actions.
+**MCP Maze Runner** is an educational project that demonstrates how to integrate AI agents with real-world environments using the [Model Context Protocol (MCP)](https://modelcontextprotocol.io/).
+
+### The Concept
+
+Players navigate a maze by chatting with an AI agent in natural language. Commands like *"move forward"*, *"look around"*, or *"where am I?"* are interpreted by the agent and translated into game actions through MCP tools. The game can be played entirely through chat—the agent provides all the information you need: your position, nearby obstacles, available moves, and a text-based maze visualization.
+
+### Why This Project?
+
+This isn't the most efficient way to build a maze game—you could create the same experience with far fewer resources and without LLM calls for simple movements. **That's exactly the point.**
+
+This project is a learning sandbox to explore:
+
+- 🔌 **MCP Integration**: How to expose environment controls as MCP tools that AI agents can use
+- 🤖 **ADK Agent Development**: Building agents with Google's Agent Development Kit, including session memory and tool orchestration
+- 🎨 **UI Layer**: Adding a Streamlit interface on top to visualize game state and simplify interaction
+- 🔄 **Agent-Environment Loop**: Understanding how agents perceive, decide, and act in a controlled environment
+
+### Real-World Applications
+
+While a maze game is simple, the pattern scales to meaningful use cases:
+
+- **Robotics**: Control physical robots through natural language commands
+- **IoT Systems**: Manage smart devices and sensors via conversational AI
+- **Game NPCs**: Create intelligent non-player characters that respond to context
+- **Process Automation**: Guide complex workflows through voice or text instructions
+
+The "player" in this maze could just as easily be a warehouse robot, a drone, or any system that needs to interpret instructions and interact with its environment.
+
 
 ### Architecture
 
@@ -28,14 +55,6 @@ graph LR
 ```
 
 ## Features
-
-### Core Features
-
-- **Natural Language Control**: Command your character using plain English
-- **Interactive Maze**: Navigate through a grid-based maze with obstacles
-- **AI-Powered Agent**: Intelligent interpretation of player intentions
-- **MCP Integration**: Full implementation of Model Context Protocol
-- **Streamlit UI**: User-friendly web interface for gameplay
 
 ### Game Mechanics
 
@@ -126,6 +145,10 @@ uv run pytest tests/ -v
 ![MCP](https://img.shields.io/badge/MCP-Protocol-green)
 ![Google ADK](https://img.shields.io/badge/Google-ADK-red?logo=google&logoColor=white)
 ![Streamlit](https://img.shields.io/badge/Streamlit-UI-FF4B4B?logo=streamlit&logoColor=white)
+
+
+## Screenshots
+![Streamlit UI Screenshot](assets/game_image.png)
 
 ## License
 
