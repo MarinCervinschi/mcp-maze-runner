@@ -98,7 +98,7 @@ uv run streamlit run main.py
 ### 5. Debug with ADK Web (Development):
 
 ```bash
-uv run python dev_main.py
+uv run python scripts/dev_main.py
 ```
 
 - This starts the MCP server and the ADK web interface for testing and debugging.
@@ -108,7 +108,7 @@ uv run python dev_main.py
 ### 6. Play in Terminal (No AI):
 
 ```bash
-uv run python run_game.py
+uv run python scripts/run_game.py
 ```
 
 - This will start the game in your terminal, allowing you to interact with the maze directly.
