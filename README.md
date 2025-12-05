@@ -9,18 +9,21 @@ An interactive maze game controlled through natural language chat, built to demo
 ### Architecture
 
 ```mermaid
-graph TD
-    A[User Chat Input] --> B[Google ADK Agent]
-    B --> C[MCP Server]
-    C --> D[Game Logic]
+graph LR
+    A[User Chat Input] --> B[Streamlit UI]
+    B --> C[Google ADK Agent]
+    C --> D[MCP Server]
+    D --> E[Game Logic]
+    E -.-> D
     D -.-> C
     C -.-> B
     B -.-> A
 
-    subgraph "Game State Loop"
-        D --> C
-        C --> B
-        B --> A
+    subgraph "Streamlit App"
+        B
+        C
+        D
+        E
     end
 ```
 
@@ -32,6 +35,7 @@ graph TD
 - **Interactive Maze**: Navigate through a grid-based maze with obstacles
 - **AI-Powered Agent**: Intelligent interpretation of player intentions
 - **MCP Integration**: Full implementation of Model Context Protocol
+- **Streamlit UI**: User-friendly web interface for gameplay
 
 ### Game Mechanics
 
@@ -81,34 +85,27 @@ GOOGLE_API_KEY=your_google_api_key_here
 
 you can obtain an API key from the [Google AI Studio](https://aistudio.google.com/api-keys).
 
-### 4. Run the Application:
+### 4. Run the Streamlit UI:
 
 ```bash
-uv run main.py
+uv run streamlit run main.py
 ```
 
-- This is the starting point that launches the MCP server and the adk web interface.
+- This launches the Streamlit web interface with the MCP server running in-process.
+- Open your browser and navigate to [http://localhost:8501](http://localhost:8501).
+- Chat with the AI agent to navigate the maze!
+
+### 5. Debug with ADK Web (Development):
+
+```bash
+uv run python dev_main.py
+```
+
+- This starts the MCP server and the ADK web interface for testing and debugging.
 - Open your browser and navigate to [http://localhost:8000](http://localhost:8000).
 - Select the `root_agent` on the left panel and start a new chat session.
 
-### 5. Alteratively, you can run the MCP server and AI agent separately:
-
-In one terminal, run the MCP server:
-
-```bash
-uv run python -m src.server
-```
-
-- This starts the MCP server as a persistent HTTP service using Server-Sent Events (SSE).
-
-in another terminal, run the agent:
-
-```bash
-uv run adk web
-```
-- This connects the AI agent to the MCP server via SSE.
-
-### 6. You can also run the game and play in the terminal:
+### 6. Play in Terminal (No AI):
 
 ```bash
 uv run python run_game.py
@@ -125,11 +122,10 @@ uv run pytest tests/ -v
 
 ## Technology Stack
 
-### Backend
-
-- **Python 3.12+**: Core programming language
-- **MCP Library** (`mcp`): Model Context Protocol implementation
-- **Google ADK**: AI agent framework with Gemini integration
+![Python](https://img.shields.io/badge/Python-3.12+-blue?logo=python&logoColor=white)
+![MCP](https://img.shields.io/badge/MCP-Protocol-green)
+![Google ADK](https://img.shields.io/badge/Google-ADK-red?logo=google&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-UI-FF4B4B?logo=streamlit&logoColor=white)
 
 ## License
 
